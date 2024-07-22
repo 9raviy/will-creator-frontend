@@ -18,7 +18,6 @@ function Dashboard({ currentUser }) {
 
     // Fetch the list of wills
     const fetchWills = async () => {
-      console.log("Backend URL:", process.env.REACT_APP_BACKEND_URL);
       try {
         const response = await fetch(
           `${process.env.REACT_APP_BACKEND_URL}/api/wills?email=${currentUser.email}`
