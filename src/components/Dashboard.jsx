@@ -12,7 +12,6 @@ function Dashboard({ currentUser }) {
   const [wills, setWills] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const [error, setError] = useState(null);
 
   useEffect(() => {
     if (!currentUser) return;
@@ -30,7 +29,6 @@ function Dashboard({ currentUser }) {
         const data = await response.json();
         setWills(data);
       } catch (error) {
-        setError(error.message);
         console.error("Error fetching wills:", error);
       }
     };
@@ -60,7 +58,6 @@ function Dashboard({ currentUser }) {
       setTitle("");
       setContent("");
     } catch (error) {
-      setError(error.message);
       console.error("Error creating will:", error);
     }
   };
