@@ -1,3 +1,20 @@
+#Login page:
+
+![image](https://github.com/user-attachments/assets/2fd24c98-af71-4cde-ac24-a483d958e2ba)
+
+#Sign up page:
+
+![image](https://github.com/user-attachments/assets/e1cabd53-9ca5-4bc4-a43d-8866c29c4cb6)
+
+#Dashboard for creating a will
+
+![image](https://github.com/user-attachments/assets/799ef843-2456-4ef4-9cc7-9c1f027e1e2f)
+
+#Created wills
+
+![image](https://github.com/user-attachments/assets/725071c2-4bd4-4fd3-83ce-0a471169ce8a)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
