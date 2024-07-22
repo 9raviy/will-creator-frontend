@@ -1,0 +1,15 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+.MuiAppBar-root {
+  z-index: 1300; /* Ensures the AppBar is above other content */
+}

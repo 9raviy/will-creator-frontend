@@ -1,0 +1,13 @@
+# Node.js
+node_modules/
+npm-debug.log
+
+# Build output
+frontend/build/
+backend/node_modules/
+
+# Environment files
+.env
+
+# production
+/build
