@@ -10,6 +10,7 @@ function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/api/users/signup`,
       {
