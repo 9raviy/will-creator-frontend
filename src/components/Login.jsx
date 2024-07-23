@@ -5,6 +5,8 @@ import { TextField, Button, Container, Typography, Box } from "@mui/material";
 function Login({ setCurrentUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(""); // State for the message
+  const [isError, setIsError] = useState(false); // State to indicate if the message is an error
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -25,7 +27,8 @@ function Login({ setCurrentUser }) {
       localStorage.setItem("token", data.token);
       navigate("/dashboard");
     } else {
-      alert(`Error: ${data.message}`);
+      setMessage(`Error: ${data.message}`);
+      setIsError(true);
     }
   };
 
@@ -66,6 +69,15 @@ function Login({ setCurrentUser }) {
             Login
           </Button>
         </form>
+        {message && (
+          <Typography
+            variant="body1"
+            color={isError ? "error" : "primary"}
+            style={{ marginTop: "16px" }}
+          >
+            {message}
+          </Typography>
+        )}
       </Box>
     </Container>
   );

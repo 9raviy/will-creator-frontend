@@ -3,6 +3,8 @@ import { TextField, Button, Container, Typography, Box } from "@mui/material";
 
 function CreateWill() {
   const [willText, setWillText] = useState("");
+  const [message, setMessage] = useState(""); // State for the message
+  const [isError, setIsError] = useState(false); // State to indicate if the message is an error
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,9 +18,12 @@ function CreateWill() {
     });
     const data = await response.json();
     if (response.ok) {
-      alert("Will created successfully");
+      setMessage("Will created successfully");
+      setIsError(false);
+      setWillText(""); // Clear the input field after successful creation
     } else {
-      alert(`Error: ${data.message}`);
+      setMessage(`Error: ${data.message}`);
+      setIsError(true);
     }
   };
 
@@ -44,6 +49,15 @@ function CreateWill() {
             Create Will
           </Button>
         </form>
+        {message && (
+          <Typography
+            variant="body1"
+            color={isError ? "error" : "primary"}
+            style={{ marginTop: "16px" }}
+          >
+            {message}
+          </Typography>
+        )}
       </Box>
     </Container>
   );

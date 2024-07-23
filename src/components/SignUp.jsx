@@ -6,6 +6,8 @@ function SignUp() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState(""); // State for the message
+  const [isError, setIsError] = useState(false); // State to indicate if the message is an error
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -23,10 +25,12 @@ function SignUp() {
     );
     const data = await response.json();
     if (response.ok) {
-      alert("User registered successfully");
-      navigate("/login");
+      setMessage("User registered successfully");
+      setIsError(false);
+      setTimeout(() => navigate("/login"), 2000); // Redirect after 2 seconds
     } else {
-      alert(`Error: ${data.message}`);
+      setMessage(`Error: ${data.message}`);
+      setIsError(true);
     }
   };
 
@@ -76,6 +80,15 @@ function SignUp() {
             Sign Up
           </Button>
         </form>
+        {message && (
+          <Typography
+            variant="body1"
+            color={isError ? "error" : "primary"}
+            style={{ marginTop: "16px" }}
+          >
+            {message}
+          </Typography>
+        )}
       </Box>
     </Container>
   );
