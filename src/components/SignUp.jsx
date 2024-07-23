@@ -8,10 +8,37 @@ function SignUp() {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState(""); // State for the message
   const [isError, setIsError] = useState(false); // State to indicate if the message is an error
+  const [errors, setErrors] = useState({}); // State for form validation errors
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    const newErrors = {};
+
+    // Validate Name
+    if (!name) newErrors.name = "Name is required";
+
+    // Validate Email
+    if (!email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = "Email is invalid";
+    }
+
+    // Validate Password
+    if (!password) {
+      newErrors.password = "Password is required";
+    } else if (password.length < 8) {
+      newErrors.password = "Password must be at least 8 characters";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
 
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/api/users/signup`,
@@ -55,6 +82,8 @@ function SignUp() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
+            error={!!errors.name}
+            helperText={errors.name}
           />
           <TextField
             label="Email"
@@ -65,6 +94,8 @@ function SignUp() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            error={!!errors.email}
+            helperText={errors.email}
           />
           <TextField
             label="Password"
@@ -75,6 +106,8 @@ function SignUp() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            error={!!errors.password}
+            helperText={errors.password}
           />
           <Button type="submit" variant="contained" color="primary" fullWidth>
             Sign Up
